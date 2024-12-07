@@ -1,0 +1,14 @@
+```mermaid
+sequenceDiagram
+    participant User as Usuario
+    participant Browser as Navegador
+    participant Server as Servidor
+
+    User->>Browser: Escribe texto en el campo de entrada
+    User->>Browser: Hace clic en el botón "Save"
+    Browser->>Server: POST /exampleapp/new_note con los datos del formulario
+    Note over Browser,Server: El navegador envía el contenido del campo<br>de texto como parte de la solicitud POST
+    Server-->>Browser: Redirección (HTTP 302) a /exampleapp/notes
+    Browser->>Server: GET /exampleapp/notes
+    Server-->>Browser: Responde con el HTML actualizado<br>incluyendo la nueva nota
+    Browser->>User: Muestra la nueva nota en la página
